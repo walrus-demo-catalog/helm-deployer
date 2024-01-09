@@ -1,0 +1,119 @@
+openapi: 3.0.3
+info:
+  title: OpenAPI schema for template helm-deployer
+components:
+  schemas:
+    variables:
+      type: object
+      required:
+      - chart_name
+      - chart_repository
+      - release_name
+      properties:
+        release_name:
+          title: Release Name
+          type: string
+          description: The name of the Helm release
+          x-walrus-ui:
+            order: 1
+            group: Basic
+        release_namespace:
+          title: Release Namespace
+          type: string
+          description: The namespace of the Helm release
+          default: default
+          nullable: true
+          x-walrus-ui:
+            order: 2
+            group: Basic
+        chart_repository:
+          title: Chart Repository
+          type: string
+          description: The URL of the Helm chart repository, such as https://charts.bitnami.com/bitnami
+            or oci://registry-1.docker.io/bitnamicharts
+          x-walrus-ui:
+            order: 3
+            group: Basic
+        private_repository:
+          title: Private Repository
+          type: boolean
+          description: Whether it is a private repository
+          default: false
+          nullable: true
+          x-walrus-ui:
+            order: 4
+            group: Advanced
+        repository_username:
+          title: Repository Username
+          type: string
+          description: Username for HTTP basic authentication against the repository
+          default: ""
+          nullable: true
+          x-walrus-ui:
+            order: 5
+            group: Advanced
+            showIf: private_repository=true
+        repository_password:
+          title: Repository Password
+          type: string
+          description: Password for HTTP basic authentication against the repository
+          default: ""
+          nullable: true
+          x-walrus-ui:
+            order: 6
+            group: Advanced
+            showIf: private_repository=true
+        chart_name:
+          title: Chart Name
+          type: string
+          description: The name of the Helm chart, such as nginx
+          x-walrus-ui:
+            order: 7
+            group: Basic
+        chart_version:
+          title: Chart Version
+          type: string
+          description: The version of the Helm chart
+          default: ""
+          nullable: true
+          x-walrus-ui:
+            order: 8
+            group: Basic
+        set_values_yaml:
+          title: Set Values Yaml
+          type: string
+          description: Custiomized values.yaml to be merged with the default values.yaml
+          default: ""
+          nullable: true
+          x-walrus-ui:
+            order: 9
+            group: Basic
+            widget: TextArea
+        reuse_values:
+          title: Reuse Values
+          type: boolean
+          description: Whether to reuse values
+          default: false
+          nullable: true
+          x-walrus-ui:
+            order: 10
+            group: Basic
+        force_update:
+          title: Force Update
+          type: boolean
+          description: Force resource update through delete/recreate if needed
+          default: false
+          nullable: true
+          x-walrus-ui:
+            order: 11
+            group: Advanced
+        timeout:
+          title: Timeout
+          type: number
+          description: Time in seconds to wait for any individual kubernetes operation
+            (like Jobs for hooks)
+          default: 300
+          nullable: true
+          x-walrus-ui:
+            order: 12
+            group: Advanced
