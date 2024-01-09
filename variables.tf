@@ -48,7 +48,7 @@ variable "set_values_yaml" {
 }
 
 variable "reuse_values" {
-  description = "Whether to reuse values"
+  description = "Whether to reuse values when upgrading"
   default     = false
 }
 

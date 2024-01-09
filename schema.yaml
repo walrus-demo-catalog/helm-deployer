@@ -51,7 +51,7 @@ components:
           nullable: true
           x-walrus-ui:
             order: 5
-            group: Advanced
+            group: Basic
             showIf: private_repository=true
         repository_password:
           title: Repository Password
@@ -61,7 +61,7 @@ components:
           nullable: true
           x-walrus-ui:
             order: 6
-            group: Advanced
+            group: Basic
             showIf: private_repository=true
         chart_name:
           title: Chart Name
@@ -92,7 +92,7 @@ components:
         reuse_values:
           title: Reuse Values
           type: boolean
-          description: Whether to reuse values
+          description: Whether to reuse values when upgrading
           default: false
           nullable: true
           x-walrus-ui:
