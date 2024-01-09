@@ -42,7 +42,7 @@ components:
           nullable: true
           x-walrus-ui:
             order: 4
-            group: Advanced
+            group: Basic
         repository_username:
           title: Repository Username
           type: string
