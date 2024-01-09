@@ -15,25 +15,25 @@ components:
           type: string
           description: The name of the Helm release
           x-walrus-ui:
-            order: 1
             group: Basic
+            order: 1
         release_namespace:
           title: Release Namespace
           type: string
-          description: The namespace of the Helm release
-          default: default
+          description: The namespace of the Helm release, Auto-generated if empty
+          default: ""
           nullable: true
           x-walrus-ui:
-            order: 2
             group: Basic
+            order: 2
         chart_repository:
           title: Chart Repository
           type: string
           description: The URL of the Helm chart repository, such as https://charts.bitnami.com/bitnami
             or oci://registry-1.docker.io/bitnamicharts
           x-walrus-ui:
-            order: 3
             group: Basic
+            order: 3
         private_repository:
           title: Private Repository
           type: boolean
@@ -41,8 +41,8 @@ components:
           default: false
           nullable: true
           x-walrus-ui:
-            order: 4
             group: Basic
+            order: 4
         repository_username:
           title: Repository Username
           type: string
@@ -50,8 +50,8 @@ components:
           default: ""
           nullable: true
           x-walrus-ui:
-            order: 5
             group: Basic
+            order: 5
             showIf: private_repository=true
         repository_password:
           title: Repository Password
@@ -60,16 +60,16 @@ components:
           default: ""
           nullable: true
           x-walrus-ui:
-            order: 6
             group: Basic
+            order: 6
             showIf: private_repository=true
         chart_name:
           title: Chart Name
           type: string
           description: The name of the Helm chart, such as nginx
           x-walrus-ui:
-            order: 7
             group: Basic
+            order: 7
         chart_version:
           title: Chart Version
           type: string
@@ -77,8 +77,8 @@ components:
           default: ""
           nullable: true
           x-walrus-ui:
-            order: 8
             group: Basic
+            order: 8
         set_values_yaml:
           title: Set Values Yaml
           type: string
@@ -86,9 +86,9 @@ components:
           default: ""
           nullable: true
           x-walrus-ui:
-            order: 9
             group: Basic
-            widget: TextArea
+            order: 9
+            widget: YamlEditor
         reuse_values:
           title: Reuse Values
           type: boolean
@@ -96,8 +96,8 @@ components:
           default: false
           nullable: true
           x-walrus-ui:
-            order: 10
             group: Basic
+            order: 10
         force_update:
           title: Force Update
           type: boolean
@@ -105,8 +105,8 @@ components:
           default: false
           nullable: true
           x-walrus-ui:
-            order: 11
             group: Advanced
+            order: 11
         timeout:
           title: Timeout
           type: number
@@ -115,5 +115,9 @@ components:
           default: 300
           nullable: true
           x-walrus-ui:
-            order: 12
             group: Advanced
+            order: 12
+      x-walrus-ui:
+        groupOrder:
+        - Basic
+        - Advanced

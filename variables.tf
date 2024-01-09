@@ -5,8 +5,8 @@ variable "release_name" {
 
 variable "release_namespace" {
   type        = string
-  description = "The namespace of the Helm release"
-  default     = "default"
+  description = "The namespace of the Helm release, Auto-generated if empty"
+  default     = ""
 }
 
 variable "chart_repository" {
@@ -61,4 +61,26 @@ variable "timeout" {
   type        = number
   description = "Time in seconds to wait for any individual kubernetes operation (like Jobs for hooks)"
   default     = 300
+}
+
+variable "context" {
+  description = <<-EOF
+Receive contextual information. When Walrus deploys, Walrus will inject specific contextual information into this field.
+
+Examples:
+```
+context:
+  project:
+    name: string
+    id: string
+  environment:
+    name: string
+    id: string
+  resource:
+    name: string
+    id: string
+```
+EOF
+  type        = map(any)
+  default     = {}
 }

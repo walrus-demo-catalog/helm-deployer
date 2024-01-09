@@ -1,19 +1,10 @@
-terraform {
-  required_providers {
-    kubernetes = {
-      source  = "hashicorp/kubernetes"
-      version = ">= 2.23.0"
-    }
-    helm = {
-      source  = "hashicorp/helm"
-      version = ">= 2.11.0"
-    }
-  }
+locals {
+  namespace = coalesce(try(var.release_namespace, null), try(var.context["environment"]["namespace"], null))
 }
 
 resource "helm_release" "release" {
   name                = var.release_name
-  namespace           = var.release_namespace
+  namespace           = local.namespace
   repository          = var.chart_repository
   repository_username = var.private_repository == true ? var.repository_username : null
   repository_password = var.private_repository == true ? var.repository_password : null
@@ -32,7 +23,7 @@ resource "helm_release" "release" {
 
 data "helm_template" "release" {
   name                = var.release_name
-  namespace           = var.release_namespace
+  namespace           = local.namespace
   repository          = var.chart_repository
   repository_username = var.private_repository == true ? var.repository_username : null
   repository_password = var.private_repository == true ? var.repository_password : null
